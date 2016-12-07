@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -30,7 +32,16 @@ public class Server {
 			
 			System.out.println("Receive MSG over>>>>>>>>>>>>>>>>>>>>>>");
 			socket.shutdownInput();//关闭输入流
-			//关闭资源
+			
+			//4.获取输出流，响应客户端需求
+			OutputStream os = socket.getOutputStream();
+			PrintWriter pw = new PrintWriter(os);//包装为打印流
+			pw.write("欢迎您！");
+			pw.flush();
+			
+			//5.关闭资源
+			pw.close();
+			os.close();
 			br.close();
 			isr.close();
 			is.close();
