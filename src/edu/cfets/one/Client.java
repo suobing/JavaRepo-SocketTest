@@ -18,15 +18,15 @@ public class Client {
 		try {
 			Socket socket = new Socket("localhost",8888);
 			//2.获取输出流,向服务器端发送信息
-			OutputStream os= socket.getOutputStream();//字节输出流
+			OutputStream os= socket.getOutputStream();//字节输出流  //无论S还是C，获得输出流都是socket
 			PrintWriter pw=new PrintWriter(os);
-			pw.write("用户名：admin;密码：123");
+			pw.write("用户名：锁;密码：123");
 			System.out.println("Cilent will send msg");
 			pw.flush();//刷新缓存，发送
 			socket.shutdownOutput();
 			
 			//3.获取输入流，读取服务端的响应信息
-			InputStream is = socket.getInputStream();
+			InputStream is = socket.getInputStream();//无论S还是C，获得输入流都是socket
 			BufferedReader br = new BufferedReader(new InputStreamReader(is));
 			String info =null;
 			while((info=br.readLine())!=null){
