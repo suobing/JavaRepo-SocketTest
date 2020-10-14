@@ -13,7 +13,7 @@ import java.net.UnknownHostException;
  * 客户端
  */
 public class Client {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		//1.创建Socket，指定服务器地址 端口
 		try {
 			Socket socket = new Socket("localhost",8888);
@@ -21,7 +21,8 @@ public class Client {
 			OutputStream os= socket.getOutputStream();//字节输出流  //无论S还是C，获得输出流都是socket
 			PrintWriter pw=new PrintWriter(os);
 			pw.write("用户名：锁;密码：123");
-			System.out.println("Cilent will send msg");
+			System.out.println("Cilent will send msg in 5 seconds...");
+			Thread.sleep(5000L);
 			pw.flush();//刷新缓存，发送
 			socket.shutdownOutput();
 			

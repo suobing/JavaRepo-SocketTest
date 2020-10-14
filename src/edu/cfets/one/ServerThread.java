@@ -23,12 +23,13 @@ public class ServerThread extends Thread {
 		OutputStream os= null;
 		PrintWriter pw= null;
 		try {
+			System.out.println("server awaits client's input...");
 			is= socket.getInputStream();//无论S还是C，获得输入流都是socket
 			isr= new InputStreamReader(is);
 			br= new BufferedReader(isr);
 			String info =null;
 			while((info=br.readLine())!=null){
-				System.out.println("This is Sever, Client says: "+info);
+				System.out.println("This is Sever "+Thread.currentThread()+", Client says: "+info);
 			}
 			
 			System.out.println("Receive MSG over>>>>>>>>>>>>>>>>>>>>>>");
